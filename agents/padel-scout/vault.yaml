@@ -1,0 +1,4 @@
+# The container only. Add the credential separately (see README, "Agent setup"):
+# AGENT_INGEST_TOKEN as an environment_variable credential, header-only, limited to the site host.
+type: vault
+display_name: padel-scout

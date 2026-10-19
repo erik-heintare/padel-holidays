@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-court-50: #eef5ff;
+  --color-court-100: #d9e8ff;
+  --color-court-500: #2563eb;
+  --color-court-600: #1d4ed8;
+  --color-court-700: #1e40af;
+  --color-court-900: #172554;
+  --color-ball: #d4f25b;
+  --color-ball-dark: #a3c41f;
+  --color-ink: #0f172a;
+  --color-muted: #64748b;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  @apply bg-white text-ink antialiased;
+}
+
+@utility container-page {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition;
+}
+@utility btn-primary {
+  @apply btn bg-court-600 text-white hover:bg-court-700;
+}
+@utility btn-ball {
+  @apply btn bg-ball text-court-900 hover:bg-ball-dark;
+}
+@utility btn-ghost {
+  @apply btn border border-slate-300 text-ink hover:border-court-500 hover:text-court-600;
+}
+@utility field {
+  @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm outline-none focus:border-court-500 focus:ring-2 focus:ring-court-100;
+}
+@utility label {
+  @apply mb-1 block text-xs font-semibold uppercase tracking-wide text-muted;
+}
+@utility chip {
+  @apply inline-flex items-center rounded-full bg-court-50 px-2.5 py-0.5 text-xs font-medium text-court-700;
+}

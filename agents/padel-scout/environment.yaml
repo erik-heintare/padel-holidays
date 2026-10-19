@@ -1,0 +1,4 @@
+# Unrestricted networking is required: under `limited` networking the web_search and web_fetch
+# tools only reach hosts listed in allowed_hosts, and the scout has to read the open web.
+# The ingest token is still confined to the site host by the vault credential's own networking scope.
+config: {type: cloud, networking: {type: unrestricted}}

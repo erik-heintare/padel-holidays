@@ -1,0 +1,12 @@
+agent: ./agent.md
+environment_id: ./environment.yaml
+vault_ids: []          # replace with the vlt_... ID from claude-lock.json after the first apply
+schedule: {type: cron, expression: "15 5 * * *", timezone: Europe/Tallinn}
+budget: {type: limit, max_list_cost: {amount: "200", currency: USD}}   # $2.00 cap per run
+initial_events:
+  - type: user.message
+    content:
+      - type: text
+        text: |
+          Job: scout
+          Site base URL: https://padel-holidays.vercel.app
