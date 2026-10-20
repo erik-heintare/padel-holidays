@@ -65,8 +65,8 @@ curl -X POST localhost:3000/api/agent/ingest \
 
 ## Going live
 
-1. **Database:** create a Neon project, either directly or through the Vercel Marketplace. Set `DATABASE_URL`, then run `npm run db:migrate`.
-2. **Vercel:** import this repo and set `DATABASE_URL`, `NEXT_PUBLIC_SITE_URL`, `AGENT_INGEST_TOKEN`, `ADMIN_PASSWORD` and `CRON_SECRET`. `RESEND_API_KEY` and `NOTIFY_EMAIL` are optional. The build pre-renders pages from the database, so `DATABASE_URL` must be reachable at build time. `vercel.json` registers the daily maintenance cron.
+1. **Vercel project:** in Vercel, go to **Add New → Project** and import `erik-heintare/padel-holidays`. Grant the Vercel GitHub app access to the repo if asked. Under Environment Variables, add `AGENT_INGEST_TOKEN`, `ADMIN_PASSWORD` and `CRON_SECRET`, then deploy. This first build fails because there is no database yet.
+2. **Database:** in the project, go to **Storage → Create Database → Neon**, pick region Frankfurt (`eu-central-1`), and connect it to the project. This sets `DATABASE_URL`. Then **Redeploy**. The `vercel-build` script applies database migrations before every build, so the schema is created automatically. The site URL comes from Vercel's production domain; set `NEXT_PUBLIC_SITE_URL` only for a custom domain. `vercel.json` registers the daily maintenance cron.
 3. **Agent setup.** This needs the [`ant` CLI](https://docs.claude.com) and an Anthropic API key, or `ant auth login`:
    1. Put your real site URL in both `agents/padel-scout/deployment-*.yaml` files. They currently say `https://padel-holidays.vercel.app`.
    2. Create the agent, environment and vault: `ant apply --dry-run agents/padel-scout/agent.md agents/padel-scout/environment.yaml agents/padel-scout/vault.yaml`, then run it again without `--dry-run`. Commit the resulting `claude-lock.json`.
